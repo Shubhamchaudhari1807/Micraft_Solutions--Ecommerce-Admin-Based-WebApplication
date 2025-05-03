@@ -51,18 +51,30 @@
 ## 📁 Folder Structure
 
 Micraft_Solutions/
+
 │
-├── 📁 Controllers/           # MVC Controllers (Admin, Products, Orders)
+├── 📁 Controllers/            # MVC Controllers (Admin, Products, Orders)
+
 ├── 📁 Models/                # Data Models (Product.cs, User.cs, etc.)
+
 ├── 📁 Views/                 # Razor Views for UI
-│   ├── 📁 Admin/  
-│   ├── 📁 Product/  
+
+│   ├── 📁 Admin/ 
+
+│   ├── 📁 Product/ 
+
 │   └── 📁 Shared/  
+
 │
-├── 📁 Scripts/               # JavaScript and jQuery (for interactivity)
+
+├── 📁 Scripts/              # JavaScript and jQuery (for interactivity)
+
 ├── 📁 Content/               # Bootstrap, CSS, images
+
 ├── 📁 App_Start/             # RouteConfig, FilterConfig
+
 ├── 📝 web.config             # Configuration and connection string
+
 └── 🧩 Micraft_Solutions.sln  
 
 
