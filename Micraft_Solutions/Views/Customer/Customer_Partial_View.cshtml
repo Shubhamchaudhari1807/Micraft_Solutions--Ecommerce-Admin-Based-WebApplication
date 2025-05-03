@@ -1,0 +1,78 @@
+﻿@model Micraft_Solutions.Data_Context.m_Customer
+<html lang="en">
+<head>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+
+        function Insert_Data() {
+
+            var from_data = $("#Product_form").serialize();
+            
+            $.ajax({
+                type: "POST",
+                url: "/Customer/SaveOrUpdate",
+                data: from_data,
+                success: function (result) {
+                  //  alert("Save Record")
+                    location.reload();
+                    document.$("#Product_form").reset();
+
+
+                }
+            })
+        }
+    </script>
+
+</head>
+<body class="bg-primary">
+    <form id="Product_form">
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-row ">
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Customer Name <small style="color:red">*</small></label>
+                    @Html.HiddenFor(m => m.Customer_Id)
+                    
+                    @Html.TextBoxFor(m => m.Customer_Name, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2" })
+                    @Html.ValidationMessageFor(m => m.Customer_Name, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Address <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Customer_Address, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2" })
+                    @Html.ValidationMessageFor(m => m.Customer_Address, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">City<small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Customer_City, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Customer_City, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Pin Code  <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Pin_Code, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Pin_Code, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+             
+        </div>
+        <div class="form-group mt-4 mb-0 form-actions">
+            <button type="button" class="btn btn-danger" onclick="Insert_Data()"> Save Record </button>
+        </div>
+       
+
+    </form>
+
+
+</body>
+
+</html>

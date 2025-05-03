@@ -1,0 +1,77 @@
+﻿@model Micraft_Solutions.Models.Product
+
+<html lang="en">
+
+<body class="bg-primary">
+    @using (Html.BeginForm("SaveOrUpdate", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-row ">
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Product Code<small style="color:red">*</small></label>
+                    @Html.HiddenFor(m => m.Product_Id)
+                    @Html.TextBoxFor(m => m.Product_Code, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2" })
+                    @Html.ValidationMessageFor(m => m.Product_Code, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Product Name <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Name, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2" })
+                    @Html.ValidationMessageFor(m => m.Product_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Unit <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Unit, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Product_Unit, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Rate <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Rate, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Product_Rate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Description <small style="color:red">*</small></label>
+                    @Html.TextAreaFor(m => m.Product_Description, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Product_Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Image <small style="color:red">*</small></label>
+                    <input type="file" name="Product_Image" required class="btn btn-default" tabindex="4" />
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="form-group mt-4 mb-0 form-actions">
+            <button type="submit" class="btn btn-danger"> Save Record </button>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <a class="nav-link" href="/home/index">Go To Home</a>
+            </div>
+        </div>
+    }
+
+
+</body>
+
+</html>

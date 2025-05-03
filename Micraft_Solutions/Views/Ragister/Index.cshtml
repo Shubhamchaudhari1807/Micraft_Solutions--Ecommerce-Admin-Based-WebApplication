@@ -1,0 +1,65 @@
+﻿
+@{
+    //ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/csss/styles.css" rel="stylesheet" />
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+                    window.onload = function () {
+                        var message = '@TempData["message"]';
+                 swal("Good job!", message, "success");
+                    };
+        </script>
+    }
+    @if (TempData["error"] != null)
+    {
+        <script type="text/javascript">
+                    window.onload = function () {
+                        var errormsg= '@TempData["error"]';
+                 swal("Oops Somthing Wrong!", errormsg, "error");
+                    };
+        </script>
+    }
+</head>
+<html lang="en">
+<body>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="cord-body mt-1">
+                                <!-- Nav tabs -->
+                                <!-- Tab panes -->
+
+
+                                <div class="card-header bg-primary">
+                                    <h5 class="font-weight-bolder text-center text-white">
+                                        Customer Registration
+                                    </h5>
+                                </div>
+                                <div class="card-body card shadow-lg border-0 rounded-lg">
+                                    @Html.Partial("~/Views/Ragister/Register_partial_View.cshtml")
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+</html>

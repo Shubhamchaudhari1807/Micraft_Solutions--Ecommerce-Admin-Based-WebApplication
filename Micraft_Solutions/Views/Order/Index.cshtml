@@ -1,0 +1,165 @@
+﻿ @model Micraft_Solutions.Models.Order_Order_Detiles_Bind
+@{
+ 
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+
+                        var message = '@TempData["message"]';
+                        Swal.fire("Good job!", message, "success");
+
+        </script>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <script type="text/javascript">
+                        var message = '@TempData["Error"]';
+                        Swal.fire("Try Again!", message, "error");
+        </script>
+    }
+    @if (TempData["Delete"] != null)
+    {
+        <script type="text/javascript">
+
+                        var message = '@TempData["Delete"]';
+                        Swal.fire("Good job!", message, "warning");
+
+        </script>
+    }
+</head>
+<script type="text/javascript">
+    function Calculation(str) {
+        var tr = $(str).closest("tr");
+        var rate = tr.find(".class_rate").val()
+        var qty = tr.find(".class_qty").val()
+        var amount = 0;
+        //var qty1 = 0;
+        var total = 0;
+        if (rate != '0' && qty != '0') {
+
+            amount = parseFloat(rate) * parseFloat(qty)
+
+
+            tr.find(".class_amount").val(amount.toFixed(2))
+            TotalAmount()
+
+
+
+        }
+        if (qty != '0' && qty != '0') {
+
+            
+            total = parseFloat(qty) + parseFloat(qty)
+
+
+            
+            tr.find("class_qty").val(total.toFixed(2))
+            total_qty()
+        }
+    }
+    function TotalAmount() {
+        $("#id_total_amount").val();
+        var sum = 0;
+
+        $(".class_amount").each(function () {
+
+
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+            }
+
+        });
+
+        $("#id_total_amount").val(sum.toFixed(2));
+
+    }
+    function total_qty() {
+        $("#id_total_qty").val();
+        var sum = 0;
+
+        $(".class_qty").each(function () {
+
+
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+            }
+
+        });
+
+        $("#id_total_qty").val(sum.toFixed(2));
+
+    }
+
+</script>
+<html lang="en">
+
+<body>
+   
+        <div class="content-wrapper">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="cord-body mt-1">
+
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#Insert">Insert data</a>
+                                        </li>
+                                        <li class="nav-item">
+                                           @* <a class="nav-link" data-toggle="tab" href="#Report">Update/Delete</a>*@
+                                        </li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div id="Insert" class="container-fluid tab-pane active">
+                                            <div class="card-header bg-primary">
+                                                <h7 class="font-weight-bolder text-center    text-white">
+                                                    Order @TempData["Product_id"]
+                                                </h7>
+
+                                            </div>
+                                            @using (Html.BeginForm("SaveOrUpdate", "Order", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                            {
+                                                <div class="card-body card shadow-lg border-0 rounded-lg">
+                                                    @Html.Partial("~/Views/Order/Order_Partial_View.cshtml", Model.obj_order_model)
+                                                    @Html.Partial("~/Views/Order/Line_Partial_View.cshtml", Model.obj_order_detils_model)
+
+
+                                                </div>
+                                                <div class="form-group mt-4 mb-0 form-actions">
+                                                    <button type="submit" class="btn btn-dark" id="btnsubmit"> Save Record </button>
+                                                </div>
+                                            }
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    
+</body>
+
+</html>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

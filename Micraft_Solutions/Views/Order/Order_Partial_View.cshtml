@@ -1,0 +1,70 @@
+﻿@model Micraft_Solutions.Models.Order
+<html lang="en">
+<head>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $("#id_total_amount").val(0.00)
+            $("#id_total_qty").val(0.00)
+
+            getDate()
+        })
+
+ 
+         
+        function getDate() {
+            var today = new Date();
+
+            document.getElementById("Enquri_date").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        }
+    </script>
+
+</head>
+<body class="bg-primary">
+
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-row ">
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Order Date  <small style="color:red">*</small></label>
+                    @Html.HiddenFor(m => m.Order_Id)
+                    @Html.TextBoxFor(m => m.Order_Date, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2", type = "Date", id = "Enquri_date" })
+                    @Html.ValidationMessageFor(m => m.Order_Date, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Customer Id <small style="color:red">*</small></label>
+                    @Html.DropDownListFor(m => m.Customer_Id, new SelectList(ViewBag.Customer, "Value", "Text"), new { @class = "form-control  class_suppler_id", id = "id_suppler_id", tabindex = "1", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.Customer_Id, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Total Qty <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Total_Qty, new { @class = "form-control class_total_qty ", autofocus = "autofocus", tabindex = "3",id ="id_total_qty",@readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Total_Qty, "", new { @class = "text-danger  " }) 
+                    
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Total Amount <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Total_Amount, new { @class = "form-control class_total_amount ", autofocus = "autofocus", tabindex = "3",id="id_total_amount",@readonly= "readonly" })
+                    @Html.ValidationMessageFor(m => m.Total_Amount, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+             
+        </div>
+         
+</body>
+
+</html>
+

@@ -1,0 +1,90 @@
+﻿@model Micraft_Solutions.Data_Context.m_Product
+<html lang="en">
+<head>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+
+        function Insert_Data() {
+
+            var data = $("#t_form").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "/Product/SaveOrUpdate",
+                data: data,
+                success: function (result) {
+                    alert("Save Record")
+                    location.reload();
+                    document.$("#t_form").reset();
+
+
+                }
+            })
+        }
+    </script>
+
+</head>
+<body class="bg-primary">
+    <form id="t_form">
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-row ">
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Product Code<small style="color:red">*</small></label>
+                    @Html.HiddenFor(m => m.Product_Id)
+                    @Html.TextBoxFor(m => m.Product_Code, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2" })
+                    @Html.ValidationMessageFor(m => m.Product_Code, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Product Name <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Name, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2" })
+                    @Html.ValidationMessageFor(m => m.Product_Name, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Product Image <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Image, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Product_Image, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Unit <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Unit, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Product_Unit, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Rate <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Rate, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Product_Rate, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Description <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.Product_Description, new { @class = "form-control ", autofocus = "autofocus", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Product_Description, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-group mt-4 mb-0 form-actions">
+            <button type="button" class="btn btn-danger" onclick="Insert_Data()"> Save Record </button>
+        </div>
+    </form>
+
+
+</body>
+
+</html>

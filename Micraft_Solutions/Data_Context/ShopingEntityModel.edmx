@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Db_MicraftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="m_Contact_Us">
+          <Key>
+            <PropertyRef Name="cust_id" />
+          </Key>
+          <Property Name="cust_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Full_Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Customer_Message" Type="nvarchar(max)" />
+          <Property Name="attribute1" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="m_Customer">
+          <Key>
+            <PropertyRef Name="Customer_Id" />
+          </Key>
+          <Property Name="Customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Address" Type="nvarchar(max)" />
+          <Property Name="Customer_City" Type="nvarchar(max)" />
+          <Property Name="Pin_Code" Type="int" />
+        </EntityType>
+        <EntityType Name="m_Order">
+          <Key>
+            <PropertyRef Name="Order_Id" />
+          </Key>
+          <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_Date" Type="datetime" />
+          <Property Name="Customer_Id" Type="int" />
+          <Property Name="Total_Qty" Type="nvarchar" MaxLength="50" />
+          <Property Name="Total_Amount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="m_Product">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Product_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Product_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Product_Image" Type="nvarchar(max)" />
+          <Property Name="Product_Unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Product_Rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Product_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="m_register">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_name" Type="nvarchar(max)" />
+          <Property Name="email_id" Type="nvarchar(max)" />
+          <Property Name="contact_no" Type="nvarchar(max)" />
+          <Property Name="password" Type="nvarchar(max)" />
+          <Property Name="customer_address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="t_line_order">
+          <Key>
+            <PropertyRef Name="Line_ID" />
+          </Key>
+          <Property Name="Line_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="ProductCode" Type="int" />
+        </EntityType>
+        <EntityType Name="t_order">
+          <Key>
+            <PropertyRef Name="Order_id" />
+          </Key>
+          <Property Name="Order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="order_qty" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="customer_name" Type="nvarchar(max)" />
+          <Property Name="customer_address" Type="nvarchar(max)" />
+          <Property Name="customer_contact" Type="nvarchar(max)" />
+          <Property Name="order_rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="attr1" Type="nvarchar(max)" />
+          <Property Name="attr2" Type="nvarchar(max)" />
+          <Property Name="attr3" Type="nvarchar(max)" />
+          <Property Name="order_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User_Table">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Name" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <Function Name="sp_fb_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_feedback_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_m_Customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_m_Customer_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_m_Product_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_m_Product_Report_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_m_t_order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_m_t_order_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Db_MicraftModelStoreContainer">
+          <EntitySet Name="m_Contact_Us" EntityType="Self.m_Contact_Us" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="m_Customer" EntityType="Self.m_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="m_Order" EntityType="Self.m_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="m_Product" EntityType="Self.m_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="m_register" EntityType="Self.m_register" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_line_order" EntityType="Self.t_line_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_order" EntityType="Self.t_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Table" EntityType="Self.User_Table" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Db_MicraftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="m_Contact_Us">
+          <Key>
+            <PropertyRef Name="cust_id" />
+          </Key>
+          <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Full_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="attribute1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="m_Customer">
+          <Key>
+            <PropertyRef Name="Customer_Id" />
+          </Key>
+          <Property Name="Customer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pin_Code" Type="Int32" />
+        </EntityType>
+        <EntityType Name="m_Order">
+          <Key>
+            <PropertyRef Name="Order_Id" />
+          </Key>
+          <Property Name="Order_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_Date" Type="DateTime" Precision="3" />
+          <Property Name="Customer_Id" Type="Int32" />
+          <Property Name="Total_Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Amount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="m_Product">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Product_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Product_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="m_register">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contact_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="customer_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="t_line_order">
+          <Key>
+            <PropertyRef Name="Line_ID" />
+          </Key>
+          <Property Name="Line_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="ProductCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="t_order">
+          <Key>
+            <PropertyRef Name="Order_id" />
+          </Key>
+          <Property Name="Order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="order_qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="customer_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="customer_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="customer_contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="order_rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="attr1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="attr2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="attr3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="order_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User_Table">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="Db_MicraftEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="m_Contact_Us" EntityType="Self.m_Contact_Us" />
+          <EntitySet Name="m_Customer" EntityType="Self.m_Customer" />
+          <EntitySet Name="m_Order" EntityType="Self.m_Order" />
+          <EntitySet Name="m_Product" EntityType="Self.m_Product" />
+          <EntitySet Name="m_register" EntityType="Self.m_register" />
+          <EntitySet Name="t_line_order" EntityType="Self.t_line_order" />
+          <EntitySet Name="t_order" EntityType="Self.t_order" />
+          <EntitySet Name="User_Table" EntityType="Self.User_Table" />
+          <FunctionImport Name="sp_fb_Result" ReturnType="Collection(Db_MicraftModel.sp_fb_Result_Result)" />
+          <FunctionImport Name="sp_feedback_Result" ReturnType="Collection(Db_MicraftModel.sp_feedback_Result_Result)" />
+          <FunctionImport Name="Sp_m_Customer" ReturnType="Collection(Db_MicraftModel.Sp_m_Customer_Result)" />
+          <FunctionImport Name="Sp_m_Customer_Result" ReturnType="Collection(Db_MicraftModel.Sp_m_Customer_Result_Result)" />
+          <FunctionImport Name="Sp_m_Product_Report" ReturnType="Collection(Db_MicraftModel.Sp_m_Product_Report_Result)" />
+          <FunctionImport Name="Sp_m_Product_Report_Result" ReturnType="Collection(Db_MicraftModel.Sp_m_Product_Report_Result_Result)" />
+          <FunctionImport Name="Sp_m_t_order" ReturnType="Collection(Db_MicraftModel.Sp_m_t_order_Result)" />
+          <FunctionImport Name="Sp_m_t_order_Result" ReturnType="Collection(Db_MicraftModel.Sp_m_t_order_Result_Result)" />
+        </EntityContainer>
+        <ComplexType Name="sp_fb_Result_Result">
+          <Property Type="Int32" Name="cust_id" Nullable="false" />
+          <Property Type="String" Name="Full_Name" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="Customer_Message" Nullable="true" />
+          <Property Type="String" Name="attribute1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_feedback_Result_Result">
+          <Property Type="Int32" Name="cust_id" Nullable="false" />
+          <Property Type="String" Name="Full_Name" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="Customer_Message" Nullable="true" />
+          <Property Type="String" Name="attribute1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_m_Customer_Result">
+          <Property Type="Int32" Name="Customer_Id" Nullable="false" />
+          <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Customer_Address" Nullable="true" />
+          <Property Type="String" Name="Customer_City" Nullable="true" />
+          <Property Type="Int32" Name="Pin_Code" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_m_Customer_Result_Result">
+          <Property Type="Int32" Name="Customer_Id" Nullable="false" />
+          <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Customer_Address" Nullable="true" />
+          <Property Type="String" Name="Customer_City" Nullable="true" />
+          <Property Type="Int32" Name="Pin_Code" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_m_Product_Report_Result">
+          <Property Type="Int32" Name="Product_Id" Nullable="false" />
+          <Property Type="String" Name="Product_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Product_Image" Nullable="true" />
+          <Property Type="String" Name="Product_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Product_Rate" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Product_Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_m_Product_Report_Result_Result">
+          <Property Type="Int32" Name="Product_Id" Nullable="false" />
+          <Property Type="String" Name="Product_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Product_Image" Nullable="true" />
+          <Property Type="String" Name="Product_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Product_Rate" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Product_Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_m_t_order_Result">
+          <Property Type="Int32" Name="Order_id" Nullable="false" />
+          <Property Type="Decimal" Name="order_amount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="order_qty" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="customer_name" Nullable="true" />
+          <Property Type="String" Name="customer_address" Nullable="true" />
+          <Property Type="String" Name="customer_contact" Nullable="true" />
+          <Property Type="Decimal" Name="order_rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="order_date" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Sp_m_t_order_Result_Result">
+          <Property Type="Int32" Name="Order_id" Nullable="false" />
+          <Property Type="Decimal" Name="order_amount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="order_qty" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="customer_name" Nullable="true" />
+          <Property Type="String" Name="customer_address" Nullable="true" />
+          <Property Type="String" Name="customer_contact" Nullable="true" />
+          <Property Type="Decimal" Name="order_rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="order_date" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Db_MicraftModelStoreContainer" CdmEntityContainer="Db_MicraftEntities">
+          <EntitySetMapping Name="m_Contact_Us">
+            <EntityTypeMapping TypeName="Db_MicraftModel.m_Contact_Us">
+              <MappingFragment StoreEntitySet="m_Contact_Us">
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Customer_Message" ColumnName="Customer_Message" />
+                <ScalarProperty Name="attribute1" ColumnName="attribute1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="m_Customer">
+            <EntityTypeMapping TypeName="Db_MicraftModel.m_Customer">
+              <MappingFragment StoreEntitySet="m_Customer">
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+                <ScalarProperty Name="Customer_City" ColumnName="Customer_City" />
+                <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="m_Order">
+            <EntityTypeMapping TypeName="Db_MicraftModel.m_Order">
+              <MappingFragment StoreEntitySet="m_Order">
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Total_Qty" ColumnName="Total_Qty" />
+                <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="m_Product">
+            <EntityTypeMapping TypeName="Db_MicraftModel.m_Product">
+              <MappingFragment StoreEntitySet="m_Product">
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Product_Code" ColumnName="Product_Code" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Product_Image" ColumnName="Product_Image" />
+                <ScalarProperty Name="Product_Unit" ColumnName="Product_Unit" />
+                <ScalarProperty Name="Product_Rate" ColumnName="Product_Rate" />
+                <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="m_register">
+            <EntityTypeMapping TypeName="Db_MicraftModel.m_register">
+              <MappingFragment StoreEntitySet="m_register">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_line_order">
+            <EntityTypeMapping TypeName="Db_MicraftModel.t_line_order">
+              <MappingFragment StoreEntitySet="t_line_order">
+                <ScalarProperty Name="Line_ID" ColumnName="Line_ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_order">
+            <EntityTypeMapping TypeName="Db_MicraftModel.t_order">
+              <MappingFragment StoreEntitySet="t_order">
+                <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_qty" ColumnName="order_qty" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+                <ScalarProperty Name="order_rate" ColumnName="order_rate" />
+                <ScalarProperty Name="attr1" ColumnName="attr1" />
+                <ScalarProperty Name="attr2" ColumnName="attr2" />
+                <ScalarProperty Name="attr3" ColumnName="attr3" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Table">
+            <EntityTypeMapping TypeName="Db_MicraftModel.User_Table">
+              <MappingFragment StoreEntitySet="User_Table">
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_fb_Result" FunctionName="Db_MicraftModel.Store.sp_fb_Result">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.sp_fb_Result_Result">
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Customer_Message" ColumnName="Customer_Message" />
+                <ScalarProperty Name="attribute1" ColumnName="attribute1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_feedback_Result" FunctionName="Db_MicraftModel.Store.sp_feedback_Result">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.sp_feedback_Result_Result">
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Customer_Message" ColumnName="Customer_Message" />
+                <ScalarProperty Name="attribute1" ColumnName="attribute1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_m_Customer" FunctionName="Db_MicraftModel.Store.Sp_m_Customer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_Customer_Result">
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+                <ScalarProperty Name="Customer_City" ColumnName="Customer_City" />
+                <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_m_Customer_Result" FunctionName="Db_MicraftModel.Store.Sp_m_Customer_Result">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_Customer_Result_Result">
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+                <ScalarProperty Name="Customer_City" ColumnName="Customer_City" />
+                <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_m_Product_Report" FunctionName="Db_MicraftModel.Store.Sp_m_Product_Report">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_Product_Report_Result">
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Product_Code" ColumnName="Product_Code" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Product_Image" ColumnName="Product_Image" />
+                <ScalarProperty Name="Product_Unit" ColumnName="Product_Unit" />
+                <ScalarProperty Name="Product_Rate" ColumnName="Product_Rate" />
+                <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_m_Product_Report_Result" FunctionName="Db_MicraftModel.Store.Sp_m_Product_Report_Result">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_Product_Report_Result_Result">
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Product_Code" ColumnName="Product_Code" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Product_Image" ColumnName="Product_Image" />
+                <ScalarProperty Name="Product_Unit" ColumnName="Product_Unit" />
+                <ScalarProperty Name="Product_Rate" ColumnName="Product_Rate" />
+                <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_m_t_order" FunctionName="Db_MicraftModel.Store.Sp_m_t_order">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_t_order_Result">
+                <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_qty" ColumnName="order_qty" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+                <ScalarProperty Name="order_rate" ColumnName="order_rate" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_m_t_order_Result" FunctionName="Db_MicraftModel.Store.Sp_m_t_order_Result">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_t_order_Result_Result">
+                <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_qty" ColumnName="order_qty" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+                <ScalarProperty Name="order_rate" ColumnName="order_rate" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

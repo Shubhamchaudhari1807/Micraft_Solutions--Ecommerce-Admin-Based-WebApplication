@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Db_MicraftModelStoreContainer" CdmEntityContainer="Db_MicraftEntities">
+    <EntitySetMapping Name="m_Customer">
+      <EntityTypeMapping TypeName="Db_MicraftModel.m_Customer">
+        <MappingFragment StoreEntitySet="m_Customer">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+          <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+          <ScalarProperty Name="Customer_City" ColumnName="Customer_City" />
+          <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="m_Order">
+      <EntityTypeMapping TypeName="Db_MicraftModel.m_Order">
+        <MappingFragment StoreEntitySet="m_Order">
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Total_Qty" ColumnName="Total_Qty" />
+          <ScalarProperty Name="Total_Amount" ColumnName="Total_Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="m_Product">
+      <EntityTypeMapping TypeName="Db_MicraftModel.m_Product">
+        <MappingFragment StoreEntitySet="m_Product">
+          <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+          <ScalarProperty Name="Product_Rate" ColumnName="Product_Rate" />
+          <ScalarProperty Name="Product_Unit" ColumnName="Product_Unit" />
+          <ScalarProperty Name="Product_Image" ColumnName="Product_Image" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+          <ScalarProperty Name="Product_Code" ColumnName="Product_Code" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_m_Product_Report" FunctionName="Db_MicraftModel.Store.Sp_m_Product_Report">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_Product_Report_Result">
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Product_Code" ColumnName="Product_Code" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+          <ScalarProperty Name="Product_Image" ColumnName="Product_Image" />
+          <ScalarProperty Name="Product_Unit" ColumnName="Product_Unit" />
+          <ScalarProperty Name="Product_Rate" ColumnName="Product_Rate" />
+          <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="t_line_order">
+      <EntityTypeMapping TypeName="Db_MicraftModel.t_line_order">
+        <MappingFragment StoreEntitySet="t_line_order">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Line_ID" ColumnName="Line_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_m_Customer" FunctionName="Db_MicraftModel.Store.Sp_m_Customer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_Customer_Result">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+          <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+          <ScalarProperty Name="Customer_City" ColumnName="Customer_City" />
+          <ScalarProperty Name="Pin_Code" ColumnName="Pin_Code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="t_order">
+      <EntityTypeMapping TypeName="Db_MicraftModel.t_order">
+        <MappingFragment StoreEntitySet="t_order">
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="attr3" ColumnName="attr3" />
+          <ScalarProperty Name="attr2" ColumnName="attr2" />
+          <ScalarProperty Name="attr1" ColumnName="attr1" />
+          <ScalarProperty Name="order_rate" ColumnName="order_rate" />
+          <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+          <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="order_qty" ColumnName="order_qty" />
+          <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+          <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_m_t_order" FunctionName="Db_MicraftModel.Store.Sp_m_t_order">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_MicraftModel.Sp_m_t_order_Result">
+          <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+          <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+          <ScalarProperty Name="order_qty" ColumnName="order_qty" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+          <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+          <ScalarProperty Name="order_rate" ColumnName="order_rate" />
+          <ScalarProperty Name="attr1" ColumnName="attr1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="m_register">
+      <EntityTypeMapping TypeName="Db_MicraftModel.m_register">
+        <MappingFragment StoreEntitySet="m_register">
+          <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="m_Contact_Us">
+      <EntityTypeMapping TypeName="Db_MicraftModel.m_Contact_Us">
+        <MappingFragment StoreEntitySet="m_Contact_Us">
+          <ScalarProperty Name="attribute1" ColumnName="attribute1" />
+          <ScalarProperty Name="Customer_Message" ColumnName="Customer_Message" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_fb" FunctionName="Db_MicraftModel.Store.sp_fb">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_MicraftModel.sp_fb_Result">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Customer_Message" ColumnName="Customer_Message" />
+          <ScalarProperty Name="attribute1" ColumnName="attribute1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="User_Table">
+      <EntityTypeMapping TypeName="Db_MicraftModel.User_Table">
+        <MappingFragment StoreEntitySet="User_Table">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

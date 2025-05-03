@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_MicraftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="m_Contact_Us">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Full_Name" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Customer_Message" Type="nvarchar(max)" />
+    <Property Name="attribute1" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="m_Customer">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Customer_Address" Type="nvarchar(max)" />
+    <Property Name="Customer_City" Type="nvarchar(max)" />
+    <Property Name="Pin_Code" Type="int" />
+  </EntityType>
+  <EntityType Name="m_Order">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Order_Date" Type="datetime" />
+    <Property Name="Customer_Id" Type="int" />
+    <Property Name="Total_Qty" Type="nvarchar" MaxLength="50" />
+    <Property Name="Total_Amount" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="m_Product">
+    <Key>
+      <PropertyRef Name="Product_Id" />
+    </Key>
+    <Property Name="Product_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Product_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Product_Image" Type="nvarchar(max)" />
+    <Property Name="Product_Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Product_Rate" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Product_Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="m_register">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_name" Type="nvarchar(max)" />
+    <Property Name="email_id" Type="nvarchar(max)" />
+    <Property Name="contact_no" Type="nvarchar(max)" />
+    <Property Name="password" Type="nvarchar(max)" />
+    <Property Name="customer_address" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_line_order">
+    <Key>
+      <PropertyRef Name="Line_ID" />
+    </Key>
+    <Property Name="Line_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="ProductCode" Type="int" />
+  </EntityType>
+  <EntityType Name="t_order">
+    <Key>
+      <PropertyRef Name="Order_id" />
+    </Key>
+    <Property Name="Order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="order_qty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="customer_name" Type="nvarchar(max)" />
+    <Property Name="customer_address" Type="nvarchar(max)" />
+    <Property Name="customer_contact" Type="nvarchar(max)" />
+    <Property Name="order_rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="attr1" Type="nvarchar(max)" />
+    <Property Name="attr2" Type="nvarchar(max)" />
+    <Property Name="attr3" Type="nvarchar(max)" />
+    <Property Name="order_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="User_Table">
+    <Key>
+      <PropertyRef Name="User_id" />
+    </Key>
+    <Property Name="User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Name" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+  </EntityType>
+  <Function Name="sp_fb_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_feedback_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_m_Customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_m_Customer_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_m_Product_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_m_Product_Report_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_m_t_order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_m_t_order_Result" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Db_MicraftModelStoreContainer">
+    <EntitySet Name="m_Contact_Us" EntityType="Self.m_Contact_Us" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="m_Customer" EntityType="Self.m_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="m_Order" EntityType="Self.m_Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="m_Product" EntityType="Self.m_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="m_register" EntityType="Self.m_register" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_line_order" EntityType="Self.t_line_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_order" EntityType="Self.t_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Table" EntityType="Self.User_Table" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Micraft_Solutions.Data_Context.Sp_m_Customer_Result>
+
+@{
+    Layout = null;
+}
+ 
+<div class="card">
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th> Name</th>
+                    <th>Address</th>
+                    <th>  City</th>
+                    <th>Pin Code  </th>
+                    <th>Edit</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.Hidden("Customer_Id", item.Customer_Id)
+                            @Html.DisplayFor(modelItem => item.Customer_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer_Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer_City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pin_Code)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Customer_Partial", new { id = item.Customer_Id }) |
+
+                            @Html.ActionLink("Delete", "Delete_Data", new { id = item.Customer_Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    
+                    <th> Name</th>
+                    <th>Address</th>
+                    <th>  City</th>
+                    <th>Pin Code  </th>
+                    <th>Edit</th>
+
+                </tr>
+            </tfoot>
+        </table>
+        @* <input type="button" class="btn btn-dark" value="Genrate Excel File" onclick="location.href='@Url.Action("GenrateExcelFile", "Student_Enquire")'" />*@
+    </div>
+</div>

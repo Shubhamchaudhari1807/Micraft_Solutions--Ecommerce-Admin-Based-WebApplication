@@ -1,0 +1,124 @@
+﻿@model Micraft_Solutions.Data_Context.t_order
+    @{ 
+
+    }
+<html lang="en">
+<head>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $("#id_order_qty").val(0.00)
+            getDate()
+          
+        })
+        function getDate() {
+            var today = new Date();
+            document.getElementById("Enquri_date").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        }
+
+        function Total_Amount() {
+            var get_rate = $("#id_order_rate").val();
+            var qty = $("#id_order_qty").val();
+            var Amount;
+            if (qty != null) {
+                Amount = parseFloat(get_rate) * parseFloat(qty)
+                $("#id_order_amount").val(Amount)
+            }
+         
+        }
+    </script>
+
+</head>
+<body class="bg-primary">
+
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @using (Html.BeginForm("Save", "Order_Check", FormMethod.Post))
+    {
+        <div class="form-row ">
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Order Date  <small style="color:red">*</small></label>
+
+                    @Html.HiddenFor(m => m.Order_id)
+                    @Html.TextBoxFor(m => m.order_date, new { @class = "form-control ", autofocus = "autofocus", tabindex = "2", type = "Date", id = "Enquri_date" })
+                    @Html.ValidationMessageFor(m => m.order_date, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Customer Name <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.customer_name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.customer_name, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Address  <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.customer_address, new { @class = "form-control class_total_qty " })
+                    @Html.ValidationMessageFor(m => m.customer_address, "", new { @class = "text-danger  " })
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Contact  <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.customer_contact, new { @class = "form-control class_total_amount " })
+                    @Html.ValidationMessageFor(m => m.customer_contact, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Product Name  <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.attr1, new { @class = "form-control class_total_amount ", autofocus = "autofocus", tabindex = "3", ReadOnly = "ReadOnly" })
+                    @Html.ValidationMessageFor(m => m.order_qty, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Rate  <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.order_rate, new { @class = "form-control class_total_amount ", autofocus = "autofocus", tabindex = "3", id = "id_order_rate", ReadOnly = "ReadOnly" })
+                    @Html.ValidationMessageFor(m => m.order_rate, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Qty  <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.order_qty, new { @class = "form-control class_total_amount ", autofocus = "autofocus", tabindex = "3", id = "id_order_qty", Onchange = "Total_Amount()", Onblur = "Total_Amount()" })
+                    @Html.ValidationMessageFor(m => m.order_qty, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="small mb-1 ">Total Amount  <small style="color:red">*</small></label>
+                    @Html.TextBoxFor(m => m.order_amount, new { @class = "form-control class_total_amount ", autofocus = "autofocus", tabindex = "3", id = "id_order_amount", ReadOnly = "ReadOnly" })
+                    @Html.ValidationMessageFor(m => m.order_amount, "", new { @class = "text-danger  " })
+                </div>
+            </div>
+            @*<div class="col-md-3">
+                    <div class="form-group ">
+
+                        <img src="@Url.Content('@TempData["Image_path"]')" width="75" ,height="75" />
+                    </div>
+                </div>*@
+
+        </div>
+        <button type="submit" class="btn btn-dark">Place Order</button> 
+        <div class="col-md-3">
+            <div class="form-group">
+                <a class="nav-link" href="/home/index">Go To Home</a>
+            </div>
+        </div>
+    }
+
+
+</body>
+
+</html>
+
+

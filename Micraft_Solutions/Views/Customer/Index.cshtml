@@ -1,0 +1,90 @@
+﻿
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+
+                        var message = '@TempData["message"]';
+                        Swal.fire("Good job!", message, "success");
+
+        </script>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <script type="text/javascript">
+                        var message = '@TempData["Error"]';
+                        Swal.fire("Try Again!", message, "error");
+        </script>
+    }
+    @if (TempData["Delete"] != null)
+    {
+        <script type="text/javascript">
+
+                        var message = '@TempData["Delete"]';
+                        Swal.fire("Good job!", message, "warning");
+
+        </script>
+    }
+</head>
+<html lang="en">
+
+<body>
+    <div class="content-wrapper">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="cord-body mt-1">
+
+                                <!-- Nav tabs -->
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="Insert" class="container-fluid tab-pane active">
+                                        <div class="card-header bg-dark">
+                                            <h7 class="font-weight-bolder text-center    text-white">
+                                                Customer
+                                            </h7>
+
+
+                                        </div>
+                                        <div class="card-body card shadow-lg border-0 rounded-lg">
+                                            @Html.Partial("~/Views/Customer/Customer_Partial_View.cshtml")
+                                            <div class="card-header bg-dark ">
+                                                <h7 class="font-weight-bolder text-center    text-white">
+                                                    Customer Master Update/Report
+                                                </h7>
+                                            </div>
+                                            <div class="card-body card shadow-lg border-0 rounded-lg">
+                                                @Html.Action("Customer_Report")
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+@Scripts.Render("~/bundles/jqueryval")
+
+</html>
+
+
+
+

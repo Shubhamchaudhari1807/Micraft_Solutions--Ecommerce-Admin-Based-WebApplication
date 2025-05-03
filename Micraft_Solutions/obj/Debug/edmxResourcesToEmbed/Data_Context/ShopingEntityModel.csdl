@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_MicraftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="m_Contact_Us">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Full_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="attribute1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="m_Customer">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pin_Code" Type="Int32" />
+  </EntityType>
+  <EntityType Name="m_Order">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_Date" Type="DateTime" Precision="3" />
+    <Property Name="Customer_Id" Type="Int32" />
+    <Property Name="Total_Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Total_Amount" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="m_Product">
+    <Key>
+      <PropertyRef Name="Product_Id" />
+    </Key>
+    <Property Name="Product_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Product_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Product_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Product_Rate" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Product_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="m_register">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="email_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contact_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="customer_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="t_line_order">
+    <Key>
+      <PropertyRef Name="Line_ID" />
+    </Key>
+    <Property Name="Line_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="ProductCode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="t_order">
+    <Key>
+      <PropertyRef Name="Order_id" />
+    </Key>
+    <Property Name="Order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="order_qty" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="customer_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="customer_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="customer_contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="order_rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="attr1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="attr2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="attr3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="order_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="User_Table">
+    <Key>
+      <PropertyRef Name="User_id" />
+    </Key>
+    <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Db_MicraftEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="m_Contact_Us" EntityType="Self.m_Contact_Us" />
+    <EntitySet Name="m_Customer" EntityType="Self.m_Customer" />
+    <EntitySet Name="m_Order" EntityType="Self.m_Order" />
+    <EntitySet Name="m_Product" EntityType="Self.m_Product" />
+    <EntitySet Name="m_register" EntityType="Self.m_register" />
+    <EntitySet Name="t_line_order" EntityType="Self.t_line_order" />
+    <EntitySet Name="t_order" EntityType="Self.t_order" />
+    <EntitySet Name="User_Table" EntityType="Self.User_Table" />
+    <FunctionImport Name="sp_fb_Result" ReturnType="Collection(Db_MicraftModel.sp_fb_Result_Result)" />
+    <FunctionImport Name="sp_feedback_Result" ReturnType="Collection(Db_MicraftModel.sp_feedback_Result_Result)" />
+    <FunctionImport Name="Sp_m_Customer" ReturnType="Collection(Db_MicraftModel.Sp_m_Customer_Result)" />
+    <FunctionImport Name="Sp_m_Customer_Result" ReturnType="Collection(Db_MicraftModel.Sp_m_Customer_Result_Result)" />
+    <FunctionImport Name="Sp_m_Product_Report" ReturnType="Collection(Db_MicraftModel.Sp_m_Product_Report_Result)" />
+    <FunctionImport Name="Sp_m_Product_Report_Result" ReturnType="Collection(Db_MicraftModel.Sp_m_Product_Report_Result_Result)" />
+    <FunctionImport Name="Sp_m_t_order" ReturnType="Collection(Db_MicraftModel.Sp_m_t_order_Result)" />
+    <FunctionImport Name="Sp_m_t_order_Result" ReturnType="Collection(Db_MicraftModel.Sp_m_t_order_Result_Result)" />
+  </EntityContainer>
+  <ComplexType Name="sp_fb_Result_Result">
+    <Property Type="Int32" Name="cust_id" Nullable="false" />
+    <Property Type="String" Name="Full_Name" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+    <Property Type="String" Name="Customer_Message" Nullable="true" />
+    <Property Type="String" Name="attribute1" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_feedback_Result_Result">
+    <Property Type="Int32" Name="cust_id" Nullable="false" />
+    <Property Type="String" Name="Full_Name" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+    <Property Type="String" Name="Customer_Message" Nullable="true" />
+    <Property Type="String" Name="attribute1" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_m_Customer_Result">
+    <Property Type="Int32" Name="Customer_Id" Nullable="false" />
+    <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Customer_Address" Nullable="true" />
+    <Property Type="String" Name="Customer_City" Nullable="true" />
+    <Property Type="Int32" Name="Pin_Code" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_m_Customer_Result_Result">
+    <Property Type="Int32" Name="Customer_Id" Nullable="false" />
+    <Property Type="String" Name="Customer_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Customer_Address" Nullable="true" />
+    <Property Type="String" Name="Customer_City" Nullable="true" />
+    <Property Type="Int32" Name="Pin_Code" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_m_Product_Report_Result">
+    <Property Type="Int32" Name="Product_Id" Nullable="false" />
+    <Property Type="String" Name="Product_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Product_Image" Nullable="true" />
+    <Property Type="String" Name="Product_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Product_Rate" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Product_Description" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_m_Product_Report_Result_Result">
+    <Property Type="Int32" Name="Product_Id" Nullable="false" />
+    <Property Type="String" Name="Product_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Product_Image" Nullable="true" />
+    <Property Type="String" Name="Product_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Product_Rate" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Product_Description" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_m_t_order_Result">
+    <Property Type="Int32" Name="Order_id" Nullable="false" />
+    <Property Type="Decimal" Name="order_amount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="order_qty" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="customer_name" Nullable="true" />
+    <Property Type="String" Name="customer_address" Nullable="true" />
+    <Property Type="String" Name="customer_contact" Nullable="true" />
+    <Property Type="Decimal" Name="order_rate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="order_date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Sp_m_t_order_Result_Result">
+    <Property Type="Int32" Name="Order_id" Nullable="false" />
+    <Property Type="Decimal" Name="order_amount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="order_qty" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="customer_name" Nullable="true" />
+    <Property Type="String" Name="customer_address" Nullable="true" />
+    <Property Type="String" Name="customer_contact" Nullable="true" />
+    <Property Type="Decimal" Name="order_rate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="order_date" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Micraft_Solutions.Models.OrderDetails>
+@{
+    int i;
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+
+    function Get_Data_Product(str) {
+
+        var tr = $(str).closest("tr");
+        var rate = tr.find('.class_rate').val();
+        var _server_rate;
+        var _server_unit;
+        var _server_image_path;
+        var product_code_id = tr.find('.class_ProductCode').val();
+    
+        if (product_code_id != "0" ) {
+            $.getJSON('/Order/Get_Product_Data/', { product_id: product_code_id }, function (data) {
+                _server_rate = (data.Product_Rate);
+
+                _server_unit = (data.Unit);
+                _server_image_path = (data.image_path)
+                alert(_server_image_path)
+                tr.find('.class_rate').val(_server_rate);
+                tr.find('.class_unit').val(_server_unit);
+                $('#image_test').val(_server_image_path)
+                
+                
+
+            });
+        }
+        else {
+
+            var amount = 0.00;
+            //tr.find('.class_tax_amount').val(amount.toFixed(2));
+            //tr.find('.class_total_amount').val(basic_amount.toFixed(2));
+        }
+    }
+   
+
+
+</script>
+<script type="text/javascript">
+        function AddRowLineTable() {
+
+            var row = "<tr>" +
+                '<td id="sr_no"></td>' +
+
+                '<input type="hidden" id="Line_ID" />' +
+                 '<td>@Html.Raw(Ajax.JavaScriptStringEncode(Html.DropDownList("item.ProductCode", new SelectList(ViewBag.Product_Code, "Value", "Text"), new { @class = "form-control form-control-sm sm-2 border border-dark disabled class_ProductCode", id = "id_ProductCode", tabindex = "1", autofocus = "autofocus", onchange = "Get_Data_Product(this)" }).ToHtmlString()))</td>' +
+                 '<td> <img src="@Url.Content("item.Image")" width="50" ,height="50" ,id="image_test"></td>'+
+                '<td>@Html.TextBox("item.unit", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled class_unit", id = "id_unit", tabindex = "1", autofocus = "autofocus", size = "4", @readonly = "readonly" })</td>' +
+                '<td>@Html.TextBox("item.rate", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled class_rate", id = "id_rate", tabindex = "1", autofocus = "autofocus", size = "4" , @readonly = "readonly" })</td>'+
+                '<td>@Html.TextBox("item.qty", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled class_qty", id = "id_qty", tabindex = "1", autofocus = "autofocus", size = "4", onchange = "Calculation(this)", onblur = "Calculation(this)" })</td>' +
+                '<td>@Html.TextBox("item.amount", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled class_amount", id = "id_amount", tabindex = "1", autofocus = "autofocus", @readonly = "readonly" })</td>' +
+                 '</tr>'
+                $('#Purchase_Line').append(row);
+
+            }
+            function DeleteRow() {
+
+                if ($('#Purchase_Line tr').length > 1) {
+
+                    $('#Purchase_Line tr:last-child').remove();
+                }
+            };
+
+</script>
+
+
+<div class="card bg-dark">
+    <h5 class="font-weight-bolder text-center text-white">
+        <span style="float:right;">
+            <a style="color:#ffffff;" tabindex="12" onclick="AddRowLineTable()">
+                <span class="fa fa-plus" style="color:none;"></span>
+            </a>
+            <a style="color:#ffffff;" tabindex="12" onclick="DeleteRow()">
+                <span class="fa fa-minus" style="color:none;"></span>
+            </a>
+        </span>
+    </h5>
+</div>
+<div class="table-responsive " style="        overflow-x: scroll;
+        overflow-y: scroll;
+
+        max-height: 450px;">
+    <table class="table table-bordered">
+        <thead>
+        <thead>
+            <tr>
+                <th style="font-size:12px">Sr.No</th>
+                <th style="font-size:12px">Product Code <span style="color:red">*</span></th>
+                <th style="font-size:12px">Product Image  <span style="color:red">*</span></th>
+                <th style="font-size:12px">Unit<span style="color:red">*</span></th>
+                <th style="font-size:12px">Rate<span style="color:red">*</span></th>
+                <th style="font-size:12px">Qty<span style="color:red">*</span></th>
+                <th style="font-size:12px">Amount<span style="color:red">*</span></th>
+            </tr>
+        </thead>
+        <tbody id="Purchase_Line">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td id="sr_no"></td>
+                    <td>
+
+                        @Html.HiddenFor(model => item.Line_ID)
+                        @Html.DropDownListFor(model => item.ProductCode, new SelectList(ViewBag.Product_Code, "Value", "Text"), new { @class = "form-control form-control-sm sm-2 border border-dark disabled class_ProductCode", id = "id_ProductCode", tabindex = "1", autofocus = "autofocus", onchange = "Get_Data_Product(this)" })
+
+
+                    </td>
+                    <td> <img src="@Url.Content(item.Image)" width="50" ,height="50" , {@class="test_class"}></td>+
+                    
+                    @*<td>@Html.TextBox("item.product_img", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_product_img", id = "id_product_img", tabindex = "1", autofocus = "autofocus", size = "8" })</td>*@
+                    <td>@Html.TextBox("item.unit", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_unit", id = "id_unit", tabindex = "1", autofocus = "autofocus", size = "8", @readonly = "readonly" })</td>
+                    <td>@Html.TextBox("item.rate", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_rate", id = "id_rate", tabindex = "1", autofocus = "autofocus", size = "8" })</td>
+                    <td>@Html.TextBox("item.qty", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_qty", id = "id_qty", tabindex = "1", autofocus = "autofocus", size = "8", onchange = "Calculation(this)", onblur = "Calculation(this)" })</td>
+                    <td>@Html.TextBox("item.amount", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_amount", id = "id_amount", tabindex = "1", autofocus = "autofocus", size = "8", @readonly = "readonly" })</td>
+
+                    
+                </tr>
+            }
+            @for (i = 1; i <= 1; i++)
+            {
+
+                <tr>
+                    <td id="sr_no"></td>
+                    <td>
+
+                        @Html.Hidden("item.Line_ID", "")
+                        @Html.DropDownList("item.ProductCode", new SelectList(ViewBag.Product_Code, "Value", "Text"), new { @class = "form-control form-control-sm sm-2 border border-dark disabled class_ProductCode", id = "id_ProductCode", tabindex = "1", autofocus = "autofocus", onchange = "Get_Data_Product(this)" })
+
+
+
+
+                    </td>
+                    <td> <img src="@Url.Content("item.Image")" width="100" ,height="100" ,id="image_test", {@class="test_class"}></td>+
+                   
+                    <td>@Html.TextBox("item.unit", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_unit", id = "id_unit", tabindex = "1", autofocus = "autofocus", size = "8", @readonly = "readonly" })</td>
+                    <td>@Html.TextBox("item.rate", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_rate", id = "id_rate", tabindex = "1", autofocus = "autofocus", size = "8", @readonly = "readonly" })</td>
+                    <td>@Html.TextBox("item.qty", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_qty", id = "id_qty", tabindex = "1", autofocus = "autofocus", size = "8", onchange = "Calculation(this)", onblur = "Calculation(this)" })</td>
+                    <td>@Html.TextBox("item.amount", "", new { @class = "form-control form-control-sm sm-2 border border-dark disabled fw-bold class_amount", id = "id_amount", tabindex = "1", autofocus = "autofocus", size = "8", @readonly = "readonly" })</td>
+
+                 </tr>
+            }
+        </tbody>
+    </table>
+  
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    var count = $("#example tr").length;
+    $("#tableCount").val(count);
+    @Html.Hidden("tableCount")
+}
+
