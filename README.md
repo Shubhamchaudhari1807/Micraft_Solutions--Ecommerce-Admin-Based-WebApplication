@@ -104,8 +104,13 @@ Micraft_Solutions/
 
 
 🤝 Author
+
    Shubham Chaudhari
-🧑‍💻 B.Tech Computer Engineering | Final Year RCPIT
+   
+🧑‍💻 B.Tech Computer Engineering 
+   
+    Final Year RCPIT
+    
 📍 RCPIT, Shirpur
 
 
