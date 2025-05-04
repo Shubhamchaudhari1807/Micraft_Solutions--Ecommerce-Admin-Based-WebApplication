@@ -23,20 +23,28 @@
   - View product listings
   - Upload images and product details
   - Price & stock management
+    
   ![Product Management](Micraft_Solutions/Content/img/product-manage.png)
+  
 
 - 👥 **User Management**
   - Secure login for admin and users
   - Role-based authorization
   - Manage customer accounts
 
+   ![Product Management](Micraft_Solutions/Content/img/login-page.png)    
+
 - 📦 **Order Management**
   - View placed orders
   - Approve or cancel orders
   - Real-time order status update
 
+  ![Product Management](Micraft_Solutions/Content/img/order-manage.png)  
+
 - 📊 **Analytics (Optional Placeholder)**
   - Total orders, revenue, and user metrics (can be extended)
+
+   ![Product Management](Micraft_Solutions/Content/img/analytics.png)     
 
 ---
 
