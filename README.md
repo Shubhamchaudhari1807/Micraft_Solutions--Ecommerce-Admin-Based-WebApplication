@@ -16,6 +16,9 @@
   - User Role Control (Admin/User)
   - Order Tracking and Status Updates
 
+  ![Admin Dashboard](Micraft_Solutions/Content/img/Admin.png)
+
+
 - 🛍️ **Product Management**
   - View product listings
   - Upload images and product details
