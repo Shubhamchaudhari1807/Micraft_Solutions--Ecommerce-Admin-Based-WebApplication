@@ -23,6 +23,7 @@
   - View product listings
   - Upload images and product details
   - Price & stock management
+  ![Product Management](Micraft_Solutions/Content/img/product-manage.png)
 
 - 👥 **User Management**
   - Secure login for admin and users
